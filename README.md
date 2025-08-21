@@ -1,6 +1,3 @@
-# .github
-
-
 ## ONPHI - ORGANISATION NON PHILOSOPHIQUE INTERNATIONALE
 
 Cette association a pour objet d'encourager la recherche, la pratique, les échanges, 
