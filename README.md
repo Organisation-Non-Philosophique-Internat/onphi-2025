@@ -6,8 +6,7 @@ l'explication et la diffusion de la non-philosophie, telle quelle a été en par
 # Site Web ONPhI
 
 ## Introduction
-
-This is a skeleton application using the Zend Framework MVC layer and module systems. This application is meant to be used as a starting place for those looking to get their feet wet with Zend Framework.
+ This application is meant to be used as a starting place for those looking to get their feet wet with Zend Framework.
 
 ## Installation using Composer
 
