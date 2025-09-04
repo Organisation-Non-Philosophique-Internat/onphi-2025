@@ -1,197 +1,206 @@
-## ONPHI - ORGANISATION NON PHILOSOPHIQUE INTERNATIONALE
+# ONPhI - Site Web
 
-Cette association a pour objet d'encourager la recherche, la pratique, les échanges, 
-l'explication et la diffusion de la non-philosophie, telle quelle a été en particulier définie dans les oeuvres de M. François Laruelle, Professeur de Philosophie à l'Université Paris X (Nanterre, Hauts-de-Seine) ; de réunir toutes personnes qui ont de l'affinité pour ce projet théorique, d'organiser en dernière instance les différents courants de cette école, dans le sens de leur plus grande fécondité.
+Site web de l'Organisation Non-Philosophique (ONPhI) développé avec Laminas Framework.
 
-# Site Web ONPhI
+## 🚀 Fonctionnalités
 
-## Introduction
- This application is meant to be used as a starting place for those looking to get their feet wet with Laminas Framework.
+### Interface Utilisateur
+- **Accueil** : Page d'accueil avec éditorial de François Laruelle
+- **Bibliothèque** : Catalogue des textes philosophiques
+- **Corpus** : Collection de textes organisés par thèmes
+- **Cours** : Système de réservation et gestion des cours
+- **Forum** : Espace de discussion communautaire
+- **Boutique** : Vente de livres et produits philosophiques
 
-## Installation using Composer
+### Administration
+- **Tableau de bord** : Interface d'administration complète
+- **Gestion des utilisateurs** : Inscription, authentification, rôles
+- **Gestion du contenu** : Éditoriaux, textes, cours
+- **Réservations** : Gestion des réservations de cours
+- **Cotisations** : Suivi des adhésions et paiements
+- **Ventes** : Gestion des commandes et livraisons
+- **Mailing list** : Gestion des abonnements OVH
+- **Chatbot** : Interface de gestion des conversations IA
 
-The easiest way to create a new Zend Framework project is to use [Composer](https://getcomposer.org/). If you don't have it already installed, then please install as per the [documentation](https://getcomposer.org/doc/00-intro.md).
+### Outils de Développement
+- **phpinfo** : Affichage sécurisé des informations PHP (`/admin/phpinfo`)
+- **Tests** : Interface d'exécution des fichiers de test (`/admin/tests`)
+- **Générateur de mots de passe** : Outil de génération sécurisée (`/admin/passwords`)
 
-To create your new Zend Framework project:
+## 🛠️ Technologies
 
-```bash
-$ composer create-project -sdev zendframework/skeleton-application path/to/install
+### Backend
+- **PHP 8.2+** : Langage de programmation
+- **Laminas Framework** : Framework MVC
+- **Doctrine ORM** : Mapping objet-relationnel
+- **MySQL** : Base de données
+- **Composer** : Gestionnaire de dépendances
+
+### Frontend
+- **Bootstrap 5** : Framework CSS
+- **jQuery** : Bibliothèque JavaScript
+- **Video.js** : Lecteur vidéo
+- **Chart.js** : Graphiques et visualisations
+
+### Services
+- **OVH API** : Gestion des emails et domaines
+- **PayPal** : Paiements en ligne
+- **OpenAI** : Intégration IA pour le chatbot
+- **TCPDF** : Génération de PDF
+
+## 📁 Structure du Projet
+
+```
+web/
+├── config/                 # Configuration de l'application
+├── data/                   # Données et logs
+├── module/                 # Modules Laminas
+│   └── Application/        # Module principal
+│       ├── src/
+│       │   ├── Controller/ # Contrôleurs
+│       │   ├── Service/    # Services métier
+│       │   └── View/       # Helpers de vue
+│       ├── view/           # Templates de vue
+│       └── config/         # Configuration du module
+├── public/                 # Point d'entrée web
+├── tests/                  # Fichiers de test et diagnostic
+├── tools/                  # Scripts utilitaires
+└── vendor/                 # Dépendances Composer
 ```
 
-Once installed, you can test it out immediately using PHP's built-in web server:
+## 🔧 Installation
 
-```bash
-$ cd path/to/install
-$ php -S 0.0.0.0:8080 -t public/ public/index.php
-# OR use the composer alias:
-$ composer serve
+### Prérequis
+- PHP 8.2 ou supérieur
+- MySQL 5.7 ou supérieur
+- Composer
+- Apache/Nginx avec mod_rewrite
+
+### Configuration
+1. Cloner le repository
+2. Installer les dépendances : `composer install`
+3. Configurer la base de données dans `config/autoload/local.php`
+4. Configurer les variables d'environnement
+5. Configurer le serveur web pour pointer vers `public/`
+
+### Variables d'environnement
+```env
+DB_HOST=localhost
+DB_NAME=onphi
+DB_USER=onphi
+DB_PASS=password
+OVH_APP_KEY=your_key
+OVH_APP_SECRET=your_secret
+PAYPAL_CLIENT_ID=your_id
+OPENAI_API_KEY=your_key
 ```
 
-This will start the cli-server on port 8080, and bind it to all network interfaces. You can then visit the site at [http://localhost:8080/](http://localhost:8080/)
+## 🚨 Problèmes Connus
 
-* which will bring up Zend Framework welcome page.
+### Page Blanche
+**Symptôme** : Les pages principales (`/fr`, `/fr/accueil`, etc.) affichent un contenu vide (Content-Length: 0).
 
-**Note:** The built-in CLI server is _for development only_.
+**Cause identifiée** : Problème dans le système de rendu des vues de Laminas Framework.
 
-## Development mode
+**Diagnostic effectué** :
+- ✅ MySQL et Doctrine fonctionnent correctement
+- ✅ Les traductions fonctionnent
+- ✅ Les templates existent et sont accessibles
+- ✅ La configuration des helpers de vue est correcte
+- ❌ Le système de rendu Laminas retourne 0 caractères
 
-The skeleton ships with [zf-development-mode](https://github.com/zfcampus/zf-development-mode) by default, and provides three aliases for consuming the script it ships with:
+**Solutions tentées** :
+- Correction du shutdown handler dans `public/index.php`
+- Ajout des templates au `template_map`
+- Mise à jour des modules Laminas
+- Régénération du dossier `vendor/`
 
-```bash
-$ composer development-enable  # enable development mode
-$ composer development-disable # disable development mode
-$ composer development-status  # whether or not development mode is enabled
-```
+**Solution temporaire** : Utiliser les outils d'administration qui fonctionnent correctement.
 
-You may provide development-only modules and bootstrap-level configuration in `config/development.config.php.dist`, and development-only application configuration in `config/autoload/development.local.php.dist`. Enabling development mode will copy these files to versions removing the `.dist` suffix, while disabling development mode will remove those copies.
+## 🔐 Sécurité
 
-Development mode is automatically enabled as part of the skeleton installation process. After making changes to one of the above-mentioned `.dist` configuration files you will either need to disable then enable development mode for the changes to take effect, or manually make matching updates to the `.dist`-less copies of those files.
+### Authentification
+- Système de rôles et permissions (RBAC)
+- Authentification par session
+- Protection CSRF sur les formulaires
 
-## Running Unit Tests
+### Administration
+- Accès restreint aux administrateurs uniquement
+- Validation des entrées utilisateur
+- Échappement des sorties HTML
 
-To run the supplied skeleton unit tests, you need to do one of the following:
+### Mots de passe
+- Génération cryptographiquement sécurisée avec `random_int()`
+- Hachage avec `password_hash()` (PASSWORD_DEFAULT, BCRYPT, ARGON2ID)
+- Calcul de l'entropie pour évaluer la force
 
-* During initial project creation, select to install the MVC testing support.
-* After initial project creation, install [zend-test](https://zendframework.github.io/zend-test/):
+## 📊 Monitoring
 
-  ```bash
-  $ composer require --dev zendframework/zend-test
-  ```
+### Logs
+- **PHP** : `data/log/php-error.log`
+- **Application** : `data/log/application.log`
+- **Bot** : Logs des conversations IA
 
-Once testing support is present, you can run the tests using:
+### Outils de diagnostic
+- **phpinfo** : `/admin/phpinfo`
+- **Tests** : `/admin/tests`
+- **OPcache** : `/opcache_reset.php`
 
-```bash
-$ ./vendor/bin/phpunit
-```
+## 🤖 IA et Chatbot
 
-If you need to make local modifications for the PHPUnit test setup, copy `phpunit.xml.dist` to `phpunit.xml` and edit the new file; the latter has precedence over the former when running tests, and is ignored by version control. \(If you want to make the modifications permanent, edit the `phpunit.xml.dist` file.\)
+### Intégration OpenAI
+- Modèle personnalisé `text-onphi-001`
+- Gestion des conversations
+- Logs des interactions
+- Interface d'administration
 
-## Using Vagrant
+### Fonctionnalités
+- Réponses contextuelles sur la philosophie
+- Gestion des sessions utilisateur
+- Historique des conversations
 
-This skeleton includes a `Vagrantfile` based on ubuntu 16.04 \(bento box\) with configured Apache2 and PHP 7.0. Start it up using:
+## 📧 Communication
 
-```bash
-$ vagrant up
-```
+### Mailing List
+- Gestion via API OVH
+- Abonnement/désabonnement
+- Interface d'administration
 
-Once built, you can also run composer within the box. For example, the following will install dependencies:
+### Notifications
+- Flash messages pour les retours utilisateur
+- Emails de confirmation
+- Notifications système
 
-```bash
-$ vagrant ssh -c 'composer install'
-```
+## 🛡️ Maintenance
 
-While this will update them:
+### Sauvegarde
+- Base de données MySQL
+- Fichiers uploadés
+- Configuration
 
-```bash
-$ vagrant ssh -c 'composer update'
-```
+### Mise à jour
+- `composer update` pour les dépendances
+- Migration de base de données si nécessaire
+- Tests de régression
 
-While running, Vagrant maps your host port 8080 to port 80 on the virtual machine; you can visit the site at [http://localhost:8080/](http://localhost:8080/)
+## 📞 Support
 
-> ### Vagrant and VirtualBox
->
-> The vagrant image is based on ubuntu/xenial64. If you are using VirtualBox as a provider, you will need:
->
-> * Vagrant 1.8.5 or later
-> * VirtualBox 5.0.26 or later
+Pour toute question ou problème :
+1. Vérifier les logs dans `data/log/`
+2. Utiliser les outils de diagnostic dans `/admin/`
+3. Consulter la documentation Laminas
+4. Contacter l'équipe de développement
 
-For vagrant documentation, please refer to [vagrantup.com](https://www.vagrantup.com/)
+## 📝 Changelog
 
-## Using docker-compose
+### Version actuelle
+- ✅ Interface d'administration complète
+- ✅ Générateur de mots de passe sécurisé
+- ✅ Outils de diagnostic et tests
+- ✅ Intégration OpenAI
+- ✅ Gestion des réservations et cotisations
+- ⚠️ Problème de page blanche en cours de résolution
 
-This skeleton provides a `docker-compose.yml` for use with [docker-compose](https://docs.docker.com/compose/); it uses the `Dockerfile` provided as its base. Build and start the image using:
+---
 
-```bash
-$ docker-compose up -d --build
-```
-
-At this point, you can visit [http://localhost:8080](http://localhost:8080) to see the site running.
-
-You can also run composer from the image. The container environment is named "zf", so you will pass that value to `docker-compose run`:
-
-```bash
-$ docker-compose run zf composer install
-```
-
-## Web server setup
-
-### Apache setup
-
-To setup apache, setup a virtual host to point to the public/ directory of the project and you should be ready to go! It should look something like below:
-
-```text
-<VirtualHost *:80>
-    ServerName zfapp.localhost
-    DocumentRoot /path/to/zfapp/public
-    <Directory /path/to/zfapp/public>
-        DirectoryIndex index.php
-        AllowOverride All
-        Order allow,deny
-        Allow from all
-        <IfModule mod_authz_core.c>
-        Require all granted
-        </IfModule>
-    </Directory>
-</VirtualHost>
-```
-
-### Nginx setup
-
-To setup nginx, open your `/path/to/nginx/nginx.conf` and add an [include directive](http://nginx.org/en/docs/ngx_core_module.html#include) below into `http` block if it does not already exist:
-
-```text
-http {
-    # ...
-    include sites-enabled/*.conf;
-}
-```
-
-Create a virtual host configuration file for your project under `/path/to/nginx/sites-enabled/zfapp.localhost.conf` it should look something like below:
-
-```text
-server {
-    listen       80;
-    server_name  zfapp.localhost;
-    root         /path/to/zfapp/public;
-
-    location / {
-        index index.php;
-        try_files $uri $uri/ @php;
-    }
-
-    location @php {
-        # Pass the PHP requests to FastCGI server (php-fpm) on 127.0.0.1:9000
-        fastcgi_pass   127.0.0.1:9000;
-        fastcgi_param  SCRIPT_FILENAME /path/to/zfapp/public/index.php;
-        include fastcgi_params;
-    }
-}
-```
-
-Restart the nginx, now you should be ready to go!
-
-## QA Tools
-
-The skeleton does not come with any QA tooling by default, but does ship with configuration for each of:
-
-* [phpcs](https://github.com/squizlabs/php_codesniffer)
-* [phpunit](https://phpunit.de)
-
-Additionally, it comes with some basic tests for the shipped `Application\Controller\IndexController`.
-
-If you want to add these QA tools, execute the following:
-
-```bash
-$ composer require --dev phpunit/phpunit squizlabs/php_codesniffer zendframework/zend-test
-```
-
-We provide aliases for each of these tools in the Composer configuration:
-
-```bash
-# Run CS checks:
-$ composer cs-check
-# Fix CS errors:
-$ composer cs-fix
-# Run PHPUnit tests:
-$ composer test
-```
+**Développé avec ❤️ pour la philosophie non-standard**
