@@ -1597,9 +1597,9 @@ Voir le fichier [LICENSE](LICENSE) pour plus de détails.
 ![GitHub issues](https://img.shields.io/github/issues/onphi/web)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/onphi/web)
 
-**Version Actuelle** : `2.0.0`  
+**Version Actuelle** : `6.0.4`  
 **Statut** : 🟢 Production Active  
-**Dernière MAJ** : Janvier 2025
+**Dernière MAJ** : Novembre 2025
 
 ### ✅ **Fonctionnalités Complètes**
 
@@ -1742,9 +1742,9 @@ Voir le fichier [LICENSE](LICENSE) pour plus de détails.
 - **Kubernetes** : [k8s/](k8s/)
 - **Repository** : [GitHub](https://github.com/onphi/web)
 
-### 🎓 **À Propos de la Non-Philosophie**
+### 🎓 **À Propos de l'ONPhI et de la Non-Philosophie**
 
-La **non-philosophie** est un courant de pensée développé par **François Laruelle** qui propose une alternative radicale à la philosophie traditionnelle. Elle cherche à penser depuis le réel plutôt que depuis les concepts philosophiques.
+L'ONPhI est une association française, régie par la loi du 1er juillet 1901 et le décret du 16 août 1905, dont la dénomination complète est Organisation Non-Philosophique Internationale. Son Président est le philosophe français François Laruelle. L'ONPhI a pour but non seulement de favoriser la recherche, la pratique, les échanges, l'interprétation et la diffusion de la non-philosophie mise en œuvre par François Laruelle et les membres de l'association, mais aussi d'étudier des projets divergents ou complémentaires comme l'anti-philosophie, la pop-philosophie ou la script-philosophie.  La non-philosophie, ou pensée non standard, est à la fois une source, une méthode et l'objectif des travaux publiés sous l'égide de l'ONPhI.  L'Organisation publie une revue dont le nom est Philo-Fictions, la revue des non-philosophies. Cette revue, ainsi que certaines sections du site de l'ONPhI, constituent une sorte de bibliothèque des écrits non-philosophiques.  Philo-fictions mise sur l'invention et la créativité, et accueille tout écrit qui pourrait être hors norme. C'est avouer - au minimum - que la réalité précède la philosophie. Les transformations, les structurations faites à partir d'une philosophie et d'autres matériaux donnés qui produisent des philosophies ou des fictions inconnues.
 
 **Ressources** :
 - [Lettres de François Laruelle](https://onphi.org/fr/lettres)
